@@ -174,7 +174,7 @@
 )]</InArgument>
                             </Assign.Value>
                           </Assign>
-                          <ui:CopyFile ContinueOnError="{x:Null}" Destination="[CreatingFolderName + &quot;\&quot;+ FileName]" DisplayName="Copy Current file to new location" sap:VirtualizedContainerService.HintSize="434,154" sap2010:WorkflowViewState.IdRef="CopyFile_4" Path="[CurrentFile.ToString]" />
+                          <ui:CopyFile ContinueOnError="{x:Null}" Destination="[CreatingFolderName + &quot;\&quot;+ FileName]" DisplayName="Copy Current file to new location" sap:VirtualizedContainerService.HintSize="434,154" sap2010:WorkflowViewState.IdRef="CopyFile_4" Overwrite="True" Path="[CurrentFile.ToString]" />
                         </Sequence>
                       </If.Then>
                       <If.Else>
