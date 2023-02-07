@@ -1,6 +1,6 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Main" VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="1643,918" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:upr="clr-namespace:UiPath.Platform.ResourceHandling;assembly=UiPath.Platform" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Main" VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="1643,2305" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:si="clr-namespace:System.IO;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:upr="clr-namespace:UiPath.Platform.ResourceHandling;assembly=UiPath.Platform" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <TextExpression.NamespacesForImplementation>
-    <scg:List x:TypeArguments="x:String" Capacity="48">
+    <scg:List x:TypeArguments="x:String" Capacity="29">
       <x:String>System.Activities</x:String>
       <x:String>System.Activities.Statements</x:String>
       <x:String>System.Activities.Expressions</x:String>
@@ -26,10 +26,14 @@
       <x:String>GlobalConstantsNamespace</x:String>
       <x:String>UiPath.Platform.ResourceHandling</x:String>
       <x:String>System.Reflection</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>UiPath.Shared.Activities.Business</x:String>
+      <x:String>UiPath.Shared.Activities</x:String>
     </scg:List>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
-    <scg:List x:TypeArguments="AssemblyReference" Capacity="24">
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="45">
       <AssemblyReference>System.Activities</AssemblyReference>
       <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
       <AssemblyReference>mscorlib</AssemblyReference>
@@ -53,17 +57,148 @@
       <AssemblyReference>System.Private.CoreLib</AssemblyReference>
       <AssemblyReference>System.ObjectModel</AssemblyReference>
       <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>UiPath.Workflow</AssemblyReference>
+      <AssemblyReference>System.Private.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Formatters</AssemblyReference>
+      <AssemblyReference>System.Private.DataContractSerialization</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Testing.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>NPOI</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>System.Console</AssemblyReference>
+      <AssemblyReference>System.Configuration.ConfigurationManager</AssemblyReference>
+      <AssemblyReference>System.Security.Permissions</AssemblyReference>
+      <AssemblyReference>System.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Private.Uri</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Miniprojekti file transferring" sap:VirtualizedContainerService.HintSize="400,191" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="Process for going through project files and getting the .bat files for making copies. &#xD;&#xA;&#xD;&#xA;1. Create &quot;Varmuuskopio&quot; directory&#xD;&#xA;2. Find .bat files from all project directories&#xD;&#xA;3. copy .bat files to &quot;Varmuuskopio&quot; directory&#xD;&#xA;" DisplayName="Miniprojekti file transferring" sap:VirtualizedContainerService.HintSize="828,2240" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="upr:ILocalResource" Name="Varmuuskopio" />
+      <Variable x:TypeArguments="x:String" Name="TalouskonttoriPath" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:CreateDirectory ContinueOnError="{x:Null}" DisplayName="Create &quot;Varmuuskopio&quot;" sap:VirtualizedContainerService.HintSize="338,80" sap2010:WorkflowViewState.IdRef="CreateDirectory_1" Output="[Varmuuskopio]" Path="~~\OneDrive - Hämeen ammattikorkeakoulu\Liiketoimintaprosessien automatisointi (TKM21)\Miniprojekti (5op)\EsimerkkiHakemisto\Varmuuskopio" />
+    <ui:CreateDirectory ContinueOnError="{x:Null}" DisplayName="Create &quot;Varmuuskopio&quot;" sap:VirtualizedContainerService.HintSize="766,80" sap2010:WorkflowViewState.IdRef="CreateDirectory_1" Output="[Varmuuskopio]" Path="EsimerkkiHakemisto\Varmuuskopio" />
+    <Assign DisplayName="Assign path to &quot;Talouskonttori&quot; directory" sap:VirtualizedContainerService.HintSize="766,82" sap2010:WorkflowViewState.IdRef="Assign_1">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[TalouskonttoriPath]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">EsimerkkiHakemisto\Yritys Oy\Talouskonttori</InArgument>
+      </Assign.Value>
+    </Assign>
+    <ui:ForEachFolderX DisplayName="For Each Folder in &quot;Talouskonttori&quot; Folder" Folder="[TalouskonttoriPath]" sap:VirtualizedContainerService.HintSize="766,1785" sap2010:WorkflowViewState.IdRef="ForEachFolderX_2" IncludeSubFolders="False" OrderBy="NameAscFirst" SkipFoldersWithoutPermission="True">
+      <ui:ForEachFolderX.Body>
+        <ActivityAction x:TypeArguments="si:DirectoryInfo, x:Int32">
+          <ActivityAction.Argument1>
+            <DelegateInArgument x:TypeArguments="si:DirectoryInfo" Name="CurrentFolder" />
+          </ActivityAction.Argument1>
+          <ActivityAction.Argument2>
+            <DelegateInArgument x:TypeArguments="x:Int32" Name="CurrentIndex" />
+          </ActivityAction.Argument2>
+          <Sequence DisplayName="Do for each &quot;..Projekti&quot; Folder" sap:VirtualizedContainerService.HintSize="732,1535" sap2010:WorkflowViewState.IdRef="Sequence_3">
+            <Sequence.Variables>
+              <Variable x:TypeArguments="x:String" Name="FolderName" />
+            </Sequence.Variables>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <Assign DisplayName="Assign FolderName" sap:VirtualizedContainerService.HintSize="670,83" sap2010:WorkflowViewState.IdRef="Assign_3">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:String">[FolderName]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:String" xml:space="preserve">[CurrentFolder.ToString.Substring(
+	CurrentFolder.ToString.LastIndexOf("\") +1
+)]</InArgument>
+              </Assign.Value>
+            </Assign>
+            <ui:ForEachFileX sap2010:Annotation.AnnotationText="Filter files with &quot;*.bat&quot; ending to get only the needed file as backup" DisplayName="For Each File in CurrentFolder" Filter="*.bat" Folder="[CurrentFolder.ToString]" sap:VirtualizedContainerService.HintSize="670,1301" sap2010:WorkflowViewState.IdRef="ForEachFileX_2" IncludeSubDirectories="False" OrderBy="NameAscFirst" SkipFolderWithoutPermission="False">
+              <ui:ForEachFileX.Body>
+                <ActivityAction x:TypeArguments="si:FileInfo, x:Int32">
+                  <ActivityAction.Argument1>
+                    <DelegateInArgument x:TypeArguments="si:FileInfo" Name="CurrentFile" />
+                  </ActivityAction.Argument1>
+                  <ActivityAction.Argument2>
+                    <DelegateInArgument x:TypeArguments="x:Int32" Name="CurrentIndex" />
+                  </ActivityAction.Argument2>
+                  <Sequence DisplayName="Check if file exists and then copy it to new location" sap:VirtualizedContainerService.HintSize="636,1020" sap2010:WorkflowViewState.IdRef="Sequence_9">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <If Condition="[CurrentFile.Exists]" sap:VirtualizedContainerService.HintSize="574,909" sap2010:WorkflowViewState.IdRef="If_1">
+                      <If.Then>
+                        <Sequence DisplayName="If file exists" sap:VirtualizedContainerService.HintSize="496,630" sap2010:WorkflowViewState.IdRef="Sequence_11">
+                          <Sequence.Variables>
+                            <Variable x:TypeArguments="x:String" Name="CreatingFolderName" />
+                            <Variable x:TypeArguments="x:String" Name="FileName" />
+                          </Sequence.Variables>
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <Assign DisplayName="Assign Folder name for creatable project folder inside &quot;Varmuuskopio&quot;" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_4">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="x:String">[CreatingFolderName]</OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="x:String">["EsimerkkiHakemisto\Varmuuskopio\" + FolderName.ToString]</InArgument>
+                            </Assign.Value>
+                          </Assign>
+                          <ui:CreateDirectory ContinueOnError="{x:Null}" Output="{x:Null}" DisplayName="Create Project folder inside &quot;Varmuuskopio&quot;" sap:VirtualizedContainerService.HintSize="434,80" sap2010:WorkflowViewState.IdRef="CreateDirectory_2" Path="[CreatingFolderName]" />
+                          <Assign DisplayName="Assign FileName" sap:VirtualizedContainerService.HintSize="434,83" sap2010:WorkflowViewState.IdRef="Assign_5">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="x:String">[FileName]</OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="x:String" xml:space="preserve">[CurrentFile.ToString.Substring(
+	CurrentFile.ToString.LastIndexOf("\") +1
+)]</InArgument>
+                            </Assign.Value>
+                          </Assign>
+                          <ui:CopyFile ContinueOnError="{x:Null}" Destination="[CreatingFolderName + &quot;\&quot;+ FileName]" DisplayName="Copy Current file to new location" sap:VirtualizedContainerService.HintSize="434,154" sap2010:WorkflowViewState.IdRef="CopyFile_4" Path="[CurrentFile.ToString]" />
+                        </Sequence>
+                      </If.Then>
+                      <If.Else>
+                        <Sequence DisplayName="If file does not exist" sap:VirtualizedContainerService.HintSize="400,103" sap2010:WorkflowViewState.IdRef="Sequence_12">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </Sequence>
+                      </If.Else>
+                    </If>
+                  </Sequence>
+                </ActivityAction>
+              </ui:ForEachFileX.Body>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:ForEachFileX>
+          </Sequence>
+        </ActivityAction>
+      </ui:ForEachFolderX.Body>
+    </ui:ForEachFolderX>
   </Sequence>
 </Activity>
