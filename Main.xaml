@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Main" VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="1643,2305" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:si="clr-namespace:System.IO;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:upr="clr-namespace:UiPath.Platform.ResourceHandling;assembly=UiPath.Platform" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Main" VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="1643,2377" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:si="clr-namespace:System.IO;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:upr="clr-namespace:UiPath.Platform.ResourceHandling;assembly=UiPath.Platform" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="29">
       <x:String>System.Activities</x:String>
@@ -80,7 +80,7 @@
       <AssemblyReference>System.Private.Uri</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="Process for going through project files and getting the .bat files for making copies. &#xD;&#xA;&#xD;&#xA;1. Create &quot;Varmuuskopio&quot; directory&#xD;&#xA;2. Find .bat files from all project directories&#xD;&#xA;3. copy .bat files to &quot;Varmuuskopio&quot; directory&#xD;&#xA;" DisplayName="Miniprojekti file transferring" sap:VirtualizedContainerService.HintSize="828,2240" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="Process for going through project files and getting the .bat files for making copies. &#xD;&#xA;&#xD;&#xA;1. Create &quot;Varmuuskopio&quot; directory&#xD;&#xA;2. Find .bat files from all project directories&#xD;&#xA;3. copy .bat files to &quot;Varmuuskopio&quot; directory&#xD;&#xA;" DisplayName="Miniprojekti file transferring" sap:VirtualizedContainerService.HintSize="828,2312" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="upr:ILocalResource" Name="Varmuuskopio" />
       <Variable x:TypeArguments="x:String" Name="TalouskonttoriPath" />
@@ -100,7 +100,7 @@
         <InArgument x:TypeArguments="x:String">EsimerkkiHakemisto\Yritys Oy\Talouskonttori</InArgument>
       </Assign.Value>
     </Assign>
-    <ui:ForEachFolderX DisplayName="For Each Folder in &quot;Talouskonttori&quot; Folder" Folder="[TalouskonttoriPath]" sap:VirtualizedContainerService.HintSize="766,1785" sap2010:WorkflowViewState.IdRef="ForEachFolderX_2" IncludeSubFolders="False" OrderBy="NameAscFirst" SkipFoldersWithoutPermission="True">
+    <ui:ForEachFolderX DisplayName="For Each Folder in &quot;Talouskonttori&quot; Folder" Folder="[TalouskonttoriPath]" sap:VirtualizedContainerService.HintSize="766,1857" sap2010:WorkflowViewState.IdRef="ForEachFolderX_2" IncludeSubFolders="False" OrderBy="NameAscFirst" SkipFoldersWithoutPermission="True">
       <ui:ForEachFolderX.Body>
         <ActivityAction x:TypeArguments="si:DirectoryInfo, x:Int32">
           <ActivityAction.Argument1>
@@ -109,7 +109,7 @@
           <ActivityAction.Argument2>
             <DelegateInArgument x:TypeArguments="x:Int32" Name="CurrentIndex" />
           </ActivityAction.Argument2>
-          <Sequence DisplayName="Do for each &quot;..Projekti&quot; Folder" sap:VirtualizedContainerService.HintSize="732,1535" sap2010:WorkflowViewState.IdRef="Sequence_3">
+          <Sequence DisplayName="Do for each &quot;..Projekti&quot; Folder" sap:VirtualizedContainerService.HintSize="732,1607" sap2010:WorkflowViewState.IdRef="Sequence_3">
             <Sequence.Variables>
               <Variable x:TypeArguments="x:String" Name="FolderName" />
             </Sequence.Variables>
@@ -128,7 +128,7 @@
 )]</InArgument>
               </Assign.Value>
             </Assign>
-            <ui:ForEachFileX sap2010:Annotation.AnnotationText="Filter files with &quot;*.bat&quot; ending to get only the needed file as backup" DisplayName="For Each File in CurrentFolder" Filter="*.bat" Folder="[CurrentFolder.ToString]" sap:VirtualizedContainerService.HintSize="670,1301" sap2010:WorkflowViewState.IdRef="ForEachFileX_2" IncludeSubDirectories="False" OrderBy="NameAscFirst" SkipFolderWithoutPermission="False">
+            <ui:ForEachFileX sap2010:Annotation.AnnotationText="Filter files with &quot;*.bat&quot; ending to get only the needed file as backup" DisplayName="For Each File in CurrentFolder" Filter="*.bat" Folder="[CurrentFolder.ToString]" sap:VirtualizedContainerService.HintSize="670,1373" sap2010:WorkflowViewState.IdRef="ForEachFileX_2" IncludeSubDirectories="False" OrderBy="NameAscFirst" SkipFolderWithoutPermission="False">
               <ui:ForEachFileX.Body>
                 <ActivityAction x:TypeArguments="si:FileInfo, x:Int32">
                   <ActivityAction.Argument1>
@@ -137,13 +137,13 @@
                   <ActivityAction.Argument2>
                     <DelegateInArgument x:TypeArguments="x:Int32" Name="CurrentIndex" />
                   </ActivityAction.Argument2>
-                  <Sequence DisplayName="Check if file exists and then copy it to new location" sap:VirtualizedContainerService.HintSize="636,1020" sap2010:WorkflowViewState.IdRef="Sequence_9">
+                  <Sequence DisplayName="Check if file exists and then copy it to new location" sap:VirtualizedContainerService.HintSize="636,1092" sap2010:WorkflowViewState.IdRef="Sequence_9">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                    <If Condition="[CurrentFile.Exists]" sap:VirtualizedContainerService.HintSize="574,909" sap2010:WorkflowViewState.IdRef="If_1">
+                    <If Condition="[CurrentFile.Exists]" sap:VirtualizedContainerService.HintSize="574,981" sap2010:WorkflowViewState.IdRef="If_1">
                       <If.Then>
                         <Sequence DisplayName="If file exists" sap:VirtualizedContainerService.HintSize="496,630" sap2010:WorkflowViewState.IdRef="Sequence_11">
                           <Sequence.Variables>
@@ -178,10 +178,11 @@
                         </Sequence>
                       </If.Then>
                       <If.Else>
-                        <Sequence DisplayName="If file does not exist" sap:VirtualizedContainerService.HintSize="400,103" sap2010:WorkflowViewState.IdRef="Sequence_12">
+                        <Sequence sap2010:Annotation.AnnotationText="Here could be for example a process for saving the project information to a specified file and at the end sen this file attached to email for the individual managing backups in the company.&#xD;&#xA;" DisplayName="If file does not exist" sap:VirtualizedContainerService.HintSize="400,175" sap2010:WorkflowViewState.IdRef="Sequence_12">
                           <sap:WorkflowViewStateService.ViewState>
                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
                               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
                         </Sequence>
